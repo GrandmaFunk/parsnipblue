@@ -17,19 +17,16 @@ function check_bounds(x, velocity) {
 }
 
 function move_sprite(velocity, gravity, x) {
-	var new_x = x + velocity;	//sets x
 
-	//rest of the function gets new variables for next function call
-
-	//swing back and forth
-	if (new_x < 50) {
-		if (!check_bounds(new_x, velocity)) {
+	//gets new velocity to swing sprite from center
+	if (x < 50) {
+		if (!check_bounds(x, velocity)) {
 			velocity = Math.abs(velocity) + gravity - jump;
 		}else {
 			velocity = velocity + gravity - jump;
 		}
 	} else {
-		if (!check_bounds(new_x, velocity)) {
+		if (!check_bounds(x, velocity)) {
 			velocity = -(velocity) - gravity + jump;
 		} else {
 			velocity = velocity - gravity + jump;
@@ -41,8 +38,9 @@ function move_sprite(velocity, gravity, x) {
 		jump = 0;
 	}
 	
+	var new_x = x + velocity;	//sets x
 	sprite.setAttribute("cx", new_x + "%");
-	//window.setTimeout(move_sprite, 50, velocity, gravity, new_x);
+	
 	window.requestAnimationFrame( function() {
 		move_sprite(velocity, gravity, new_x);
 	});
