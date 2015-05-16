@@ -12,8 +12,6 @@ function start_game() {
 	make_rect(-60,10);
 	make_rect(-95, 5);
 	make_rect(-150, 40);
-
-	move_rects();
 }
 
 function get_ran(min, max) {
