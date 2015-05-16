@@ -23,19 +23,28 @@ svg {
 }
 
 #highscore {
-	font-size: 5vh;
+	font-size: 2em;
 	opacity: 0.5;
 }
 
 #instructions {
-	font-size: 2vh;
+	font-size: 1em;
 	opacity: 0.4;
 }
 
 #title {
 	position: fixed;
+	-webkit-transform: rotate(-90deg);
+	-webkit-transform-origin: 100% 100%;
+	-moz-transform: rotate(-90deg);
+	-moz-transform-origin: 100% 100%;
+	-ms-transform: rotate(-90deg);
+	-ms-transform-origin: 100% 100%;
+	-o-transform: rotate(-90deg);
+	-o-transform-origin: 100% 100%;
 	transform: rotate(-90deg);
-	right: -30vh;
-	top: 50%;
+	transform-origin: 100% 100%;
+	right: 0;
+	top: 0%;
 	font-size: 10vh;
 }
