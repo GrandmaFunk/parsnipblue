@@ -1,11 +1,24 @@
 function start_game() {
 	//load elements
 	sprite = document.getElementById("sprite");
+	svg = document.getElementsByTagName("svg")[0];
+	console.log(svg);
 	jump = false;
 	jump_x = 2;
 	var x = parseInt(sprite.getAttribute("cx").slice(0,-1));
 	move_sprite(2, 0.1, x, false);
 			//velocity, gravity, x, side
+}
+
+function make_rect(y, h) {
+	var rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+	rect.setAttributeNS(null, "x", "49%");
+	rect.setAttributeNS(null, "y", y + "%");
+	rect.setAttributeNS(null, "width", "2%");
+	rect.setAttributeNS(null, "height", h +"%");
+	rect.setAttributeNS(null, "fill", "white");
+	svg.appendChild(rect);
+	console.log(rect);
 }
 
 function check_bounds(x, velocity) {
