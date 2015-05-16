@@ -16,6 +16,10 @@ function start_game() {
 	make_rect(-150, 40);
 }
 
+function reset_score() {
+	document.getElementById("score").textContent = 0;
+}
+
 function get_ran(min, max) {
 	return Math.floor(Math.random() * (max + min + 1) + min);
 }
@@ -82,7 +86,7 @@ function apply_score() {
 			highscore = score;
 		}
 	} else {
-		//reset_game
+		reset_score();
 	}
 }
 
