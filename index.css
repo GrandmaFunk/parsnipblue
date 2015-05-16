@@ -18,11 +18,24 @@ svg {
 }
 
 #score {
-	font-size: 70vh;
+	font-size: 60vh;
 	opacity: 0.3;
 }
 
 #highscore {
 	font-size: 5vh;
 	opacity: 0.5;
+}
+
+#instructions {
+	font-size: 2vh;
+	opacity: 0.4;
+}
+
+#title {
+	position: fixed;
+	transform: rotate(-90deg);
+	right: -30vh;
+	top: 50%;
+	font-size: 10vh;
 }
