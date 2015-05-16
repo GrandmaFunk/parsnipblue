@@ -1,6 +1,7 @@
 function start_game() {
 	//load elements
 	sprite = document.getElementById("sprite");
+	rects = svg.getElementsByTagName("rect");
 	svg = document.getElementsByTagName("svg")[0];
 	jump = false;
 	jump_x = 2;
@@ -29,7 +30,6 @@ function make_rect(y, h) {
 }
 
 function move_rects() {
-	var rects = svg.getElementsByTagName("rect");
 	for (var i = 0; i < rects.length; i++) {
 		var cur_y =  parseInt(rects[i].getAttributeNS(null, "y").slice(0, -1));
 		rects[i].setAttributeNS(null, "y", cur_y + 1 + "%");
@@ -53,9 +53,18 @@ function check_bounds(x, velocity) {
 	}
 }
 
+function check_collision() {
+	
+}
+
 function apply_score() {
-	var score = document.getElementById("score");
-	score.textContent = parseInt(score.textContent) + 1;
+	//if no collision, score + 1
+	if (!check_collision()) {
+		var score = document.getElementById("score");
+		score.textContent = parseInt(score.textContent) + 1;
+	} else {
+		//reset_game
+	}
 }
 
 function move_sprite(velocity, gravity, x, left_side) {
