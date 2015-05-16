@@ -154,3 +154,10 @@ function move_sprite(velocity, gravity, x, left_side) {
 function entry() {
 	jump = true;
 }
+
+document.onkeyup = function(e) {
+	//jump on spacebar
+	if (e.keyCode == 32) {
+		entry();
+	}
+}
