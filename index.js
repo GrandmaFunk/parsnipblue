@@ -3,6 +3,7 @@ function start_game() {
 	sprite = document.getElementById("sprite");
 	svg = document.getElementsByTagName("svg")[0];
 	rects = svg.getElementsByTagName("rect");
+	highscore = 0;
 	jump = false;
 	jump_x = 2;
 	var x = parseInt(sprite.getAttribute("cx").slice(0,-1));
@@ -39,7 +40,6 @@ function move_rects() {
 			rects[i].setAttributeNS(null, "height", new_height + "%");
 			rects[i].setAttributeNS(null, "y", 0 - get_ran(0, 100) - new_height + "%");
 			//rects[i].setAttributeNS(null, "y", 0 - parseInt(rects[i].getAttributeNS(null, "height").slice(0, -1)) + "%");
-			
 		}
 	}
 }
@@ -66,11 +66,21 @@ function check_collision() {
 	return false;
 }
 
+function update_highscore(score) {
+	var highscore_box = svg.getElementById("highscore");
+	highscore_box.textContent = "Highscore: " + score;
+
+}
 function apply_score() {
 	//if no collision, score + 1
 	if (!check_collision()) {
-		var score = document.getElementById("score");
-		score.textContent = parseInt(score.textContent) + 1;
+		var score_box = svg.getElementById("score");
+		var score = parseInt(score_box.textContent) + 1;
+		score_box.textContent = score;
+		if (score > highscore) {
+			update_highscore(score);
+			highscore = score;
+		}
 	} else {
 		//reset_game
 	}

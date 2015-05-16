@@ -17,7 +17,12 @@ svg {
 	height: 99vh;
 }
 
-#score{
+#score {
 	font-size: 70vh;
 	opacity: 0.3;
+}
+
+#highscore {
+	font-size: 5vh;
+	opacity: 0.5;
 }
