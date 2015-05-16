@@ -2,15 +2,17 @@ function start_game() {
 	//load elements
 	sprite = document.getElementById("sprite");
 	svg = document.getElementsByTagName("svg")[0];
-	console.log(svg);
 	jump = false;
 	jump_x = 2;
 	var x = parseInt(sprite.getAttribute("cx").slice(0,-1));
 	move_sprite(2, 0.1, x, false);
 			//velocity, gravity, x, side
-	make_rect(25, 25);
-	move_rects();
-	move_rects();
+	make_rect(-15, 5);
+	make_rect(-30, 5);
+	make_rect(-60,10);
+	make_rect(-95, 5);
+	make_rect(-150, 40);
+
 	move_rects();
 }
 
@@ -26,7 +28,6 @@ function make_rect(y, h) {
 	rect.setAttributeNS(null, "height", h +"%");
 	rect.setAttributeNS(null, "fill", "white");
 	svg.appendChild(rect);
-	console.log(rect);
 }
 
 function move_rects() {
@@ -35,7 +36,12 @@ function move_rects() {
 		var cur_y =  parseInt(rects[i].getAttributeNS(null, "y").slice(0, -1));
 		rects[i].setAttributeNS(null, "y", cur_y + 1 + "%");
 		if (cur_y > 100){
-			rects[i].setAttributeNS(null, "y", "0%");
+			//give the rectangle that moved off the board a random height and y value above the screen
+			var new_height = get_ran(5, 15);
+			rects[i].setAttributeNS(null, "height", new_height + "%");
+			rects[i].setAttributeNS(null, "y", 0 - get_ran(0, 100) - new_height + "%");
+			//rects[i].setAttributeNS(null, "y", 0 - parseInt(rects[i].getAttributeNS(null, "height").slice(0, -1)) + "%");
+			
 		}
 	}
 }
