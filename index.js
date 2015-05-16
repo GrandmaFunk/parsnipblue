@@ -8,6 +8,14 @@ function start_game() {
 	var x = parseInt(sprite.getAttribute("cx").slice(0,-1));
 	move_sprite(2, 0.1, x, false);
 			//velocity, gravity, x, side
+	make_rect(25, 25);
+	move_rects();
+	move_rects();
+	move_rects();
+}
+
+function get_ran(min, max) {
+	return Math.floor(Math.random() * (max + min + 1) + min);
 }
 
 function make_rect(y, h) {
@@ -19,6 +27,17 @@ function make_rect(y, h) {
 	rect.setAttributeNS(null, "fill", "white");
 	svg.appendChild(rect);
 	console.log(rect);
+}
+
+function move_rects() {
+	var rects = svg.getElementsByTagName("rect");
+	for (var i = 0; i < rects.length; i++) {
+		var cur_y =  parseInt(rects[i].getAttributeNS(null, "y").slice(0, -1));
+		rects[i].setAttributeNS(null, "y", cur_y + 1 + "%");
+		if (cur_y > 100){
+			rects[i].setAttributeNS(null, "y", "0%");
+		}
+	}
 }
 
 function check_bounds(x, velocity) {
@@ -37,7 +56,7 @@ function apply_score() {
 
 function move_sprite(velocity, gravity, x, left_side) {
 	//moves sprite, requestAnimationFrame calls this function repetedly
-
+	
 	if (x < 50) {
 		//sprite is on left side
 		if (left_side !== true) {
@@ -92,6 +111,7 @@ function move_sprite(velocity, gravity, x, left_side) {
 	
 	window.requestAnimationFrame( function() {
 		move_sprite(velocity, gravity, new_x, left_side);
+		move_rects();
 	});
 }
 
