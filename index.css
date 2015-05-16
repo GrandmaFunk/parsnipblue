@@ -16,3 +16,8 @@ svg {
 	margin: 0;
 	height: 99vh;
 }
+
+#score{
+	font-size: 70vh;
+	opacity: 0.3;
+}
