@@ -1,8 +1,8 @@
 function start_game() {
 	//load elements
 	sprite = document.getElementById("sprite");
-	rects = svg.getElementsByTagName("rect");
 	svg = document.getElementsByTagName("svg")[0];
+	rects = svg.getElementsByTagName("rect");
 	jump = false;
 	jump_x = 2;
 	var x = parseInt(sprite.getAttribute("cx").slice(0,-1));
@@ -54,7 +54,11 @@ function check_bounds(x, velocity) {
 }
 
 function check_collision() {
-	
+	//checks rects against the sprite's y coordinate (75)
+	//returns true if sprite and rects collided
+	for (var i = 0; i < rects.length; i++) {
+		rects[i].getAttributeNS(null, "y").slice(0, -1);
+	}
 }
 
 function apply_score() {
