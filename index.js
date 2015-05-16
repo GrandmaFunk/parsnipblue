@@ -57,8 +57,13 @@ function check_collision() {
 	//checks rects against the sprite's y coordinate (75)
 	//returns true if sprite and rects collided
 	for (var i = 0; i < rects.length; i++) {
-		rects[i].getAttributeNS(null, "y").slice(0, -1);
+		var ry = parseInt(rects[i].getAttributeNS(null, "y").slice(0, -1));
+		var rh = ry + parseInt(rects[i].getAttributeNS(null, "height").slice(0, -1));
+		if (ry <= 75 && rh >= 75) {
+			return true;
+		}
 	}
+	return false;
 }
 
 function apply_score() {
