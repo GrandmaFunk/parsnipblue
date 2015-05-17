@@ -17,7 +17,14 @@ function start_game() {
 }
 
 function reset_score() {
-	document.getElementById("score").textContent = 0;
+	var score_box = document.getElementById("score")
+	score_box.textContent = 0;
+	score_box.style.opacity = 0.7;  
+	score_box.setAttributeNS(null, "fill", "#FF0000");
+	window.setTimeout(function() {
+		score_box.style.opacity = 0.3;
+		score_box.setAttributeNS(null, "fill", "#FFFFFF");
+	}, 500);
 }
 
 function get_ran(min, max) {
