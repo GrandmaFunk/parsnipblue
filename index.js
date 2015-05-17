@@ -30,7 +30,7 @@ function make_rect(y, h) {
 	rect.setAttributeNS(null, "y", y + "%");
 	rect.setAttributeNS(null, "width", "2%");
 	rect.setAttributeNS(null, "height", h +"%");
-	rect.setAttributeNS(null, "fill", "white");
+	rect.setAttributeNS(null, "fill", "#FFFFFF");
 	svg.appendChild(rect);
 }
 
