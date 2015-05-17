@@ -30,7 +30,7 @@ svg {
 	opacity: 0.5;
 }
 
-#instructions {
+#instructions, a {
 	font-size: 1em;
 	opacity: 0.4;
 }
