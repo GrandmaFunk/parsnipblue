@@ -1,23 +1,23 @@
 function start_game() {
 	//load elements
-	sprite = document.getElementById("sprite");
 	svg = document.getElementsByTagName("svg")[0];
+	sprite = svg.getElementById("sprite");
 	rects = svg.getElementsByTagName("rect");
 	highscore = 0;
 	jump = false;
 	jump_x = 2;
 	var x = parseInt(sprite.getAttribute("cx").slice(0,-1));
-	move_sprite(2, 0.1, x, false);
-			//velocity, gravity, x, side
 	make_rect(-15, 5);
 	make_rect(-30, 5);
 	make_rect(-60,10);
 	make_rect(-95, 5);
 	make_rect(-150, 40);
+	move_sprite(2, 0.1, x, false);
+			//velocity, gravity, x, side
 }
 
 function reset_score() {
-	var score_box = document.getElementById("score")
+	var score_box = svg.getElementById("score")
 	score_box.textContent = 0;
 	score_box.style.opacity = 0.7;  
 	score_box.setAttributeNS(null, "fill", "#FF0000");
