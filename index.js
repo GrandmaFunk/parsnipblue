@@ -55,14 +55,6 @@ function moveRects(rects) {
 	return rects;
 }
 
-function isInBounds(x, velocity) {
-	if (0 < x + velocity && x + velocity < 100) {
-		return true;
-	} else {
-		return false;
-	}
-}
-
 function didCollide(rects) {
 	for (var i = 0; i < rects.length; i++) {
 		if (rects[i][1] <= 75 && (rects[i][1] + rects[i][2]) >= 75) {
@@ -97,7 +89,7 @@ function moveSprite(velocity, gravity, x, left_side, rects) {
 			left_side = true;
 			setScore(rects);
 		}
-		if (!isInBounds(x, velocity)) {
+		if (x + velocity < 0) {
 			velocity = Math.abs(velocity) + gravity;
 		}else {
 			velocity += gravity;
@@ -118,7 +110,7 @@ function moveSprite(velocity, gravity, x, left_side, rects) {
 			left_side = false;
 			setScore(rects);
 		}
-		if (!isInBounds(x, velocity)) {
+		if (x + velocity > 100) {
 			velocity = -(velocity) - gravity;
 		} else {
 			velocity -= gravity; 
