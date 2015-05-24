@@ -1,5 +1,4 @@
 function start() {
-	//load elements
 	svg = document.getElementsByTagName("svg")[0];
 	sprite = svg.getElementById("sprite");
 	score_box = svg.getElementById("score");
@@ -35,7 +34,7 @@ function makeRect(y, h) {
 	rect.setAttributeNS(null, "x", "49%");
 	rect.setAttributeNS(null, "y", y + "%");
 	rect.setAttributeNS(null, "width", "2%");
-	rect.setAttributeNS(null, "height", h +"%");
+	rect.setAttributeNS(null, "height", h + "%");
 	rect.setAttributeNS(null, "fill", "#FFFFFF");
 	svg.appendChild(rect);
 	return rect;
@@ -103,14 +102,15 @@ function moveSprite(velocity, gravity, x, left_side, rects) {
 		}else {
 			velocity += gravity;
 		}
-		if (velocity > 0 && jump) {
-			//if going towards center, move sprite towards bounds
-			velocity -= jump_x;
-			jump = false;
-		}else if (jump) {
-			//if going towards bounds, move sprite towards center
-			velocity = -jump_x/2;
-			jump = false;
+		if (jump) {
+			if (velocity > 0) {
+				//if going towards center, move sprite towards bounds
+				velocity -= jump_x;
+			} else {
+				//if going towards bounds, move sprite towards center
+				velocity = -jump_x/2;
+			}
+		jump = false;
 		}
 	} else {
 		//sprite on right side
@@ -123,14 +123,15 @@ function moveSprite(velocity, gravity, x, left_side, rects) {
 		} else {
 			velocity -= gravity; 
 		}
-		if (jump && velocity < 0) {
-			//if going towards center, move in opposite direction
-			velocity += jump_x;
-			jump = false;
-		} else if (jump) {
-			//if going towards bounds, move in opposite direction
-			velocity = jump_x/2;
-			jump = false;
+		if (jump) {
+			if (velocity < 0) {
+				//if going towards center, move in opposite direction
+				velocity += jump_x;
+			} else {
+				//if going towards bounds, move in opposite direction
+				velocity = jump_x/2;
+			}
+		jump = false;
 		}
 	}
 	
