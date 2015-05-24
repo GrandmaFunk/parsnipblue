@@ -44,14 +44,16 @@ function make_rect(y, h) {
 function move_rects(rects) {
 	for (var i = 0; i < rects.length; i++) {
 		var cur_y =  parseInt(rects[i].getAttributeNS(null, "y").slice(0, -1));
-		rects[i].setAttributeNS(null, "y", cur_y + 1 + "%");
 		if (cur_y > 100){
 			//give the rectangle that moved off the board a random height and y value above the screen
 			var new_height = get_ran(5, 15);
 			rects[i].setAttributeNS(null, "height", new_height + "%");
 			rects[i].setAttributeNS(null, "y", 0 - get_ran(0, 100) - new_height + "%");
+		} else {
+			rects[i].setAttributeNS(null, "y", cur_y + 1 + "%");
 		}
 	}
+	return rects;
 }
 
 function check_bounds(x, velocity) {
@@ -79,7 +81,6 @@ function check_collision(rects) {
 function update_highscore(score) {
 	var highscore_box = svg.getElementById("highscore");
 	highscore_box.textContent = "Highscore: " + score;
-
 }
 
 function apply_score(rects) {
@@ -151,8 +152,7 @@ function move_sprite(velocity, gravity, x, left_side, rects) {
 	sprite.setAttribute("cx", (x + velocity) + "%");
 	
 	window.requestAnimationFrame( function() {
-		move_sprite(velocity, gravity, (x + velocity), left_side, rects);
-		move_rects(rects);
+		move_sprite(velocity, gravity, (x + velocity), left_side, move_rects(rects));
 	});
 }
 
