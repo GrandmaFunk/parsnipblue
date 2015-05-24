@@ -81,6 +81,7 @@ function update_highscore(score) {
 	highscore_box.textContent = "Highscore: " + score;
 
 }
+
 function apply_score(rects) {
 	//if no collision, score + 1
 	if (!check_collision(rects)) {
@@ -109,16 +110,16 @@ function move_sprite(velocity, gravity, x, left_side, rects) {
 		if (!check_bounds(x, velocity)) {
 			velocity = Math.abs(velocity) + gravity;
 		}else {
-			velocity = velocity + gravity;
+			velocity += gravity;
 		}
 		//if jump on left side
 		if (velocity > 0 && jump) {
 			//if going towards center, move sprite towards bounds
-			velocity = velocity - jump_x;
+			velocity -= jump_x;
 			jump = false;
 		}else if (jump) {
 			//if going towards bounds, move sprite towards center
-			velocity = velocity + jump_x;
+			velocity += jump_x;
 			jump = false;
 		}
 	} else {
@@ -132,16 +133,16 @@ function move_sprite(velocity, gravity, x, left_side, rects) {
 		if (!check_bounds(x, velocity)) {
 			velocity = -(velocity) - gravity;
 		} else {
-			velocity = velocity - gravity; 
+			velocity -= gravity; 
 		}
 		//if jump on right side
 		if (jump && velocity < 0) {
 			//if going towards center, move in opposite direction
-			velocity = velocity + jump_x;
+			velocity += jump_x;
 			jump = false;
 		} else if (jump) {
 			//if going towards bounds, move in opposite direction
-			velocity = velocity - jump_x;
+			velocity -= jump_x;
 			jump = false;
 		}
 	}
