@@ -17,7 +17,6 @@ function start() {
 }
 
 function resetScore() {
-	var score_box = svg.getElementById("score")
 	score_box.textContent = 0;
 	score_box.style.opacity = 0.7;  
 	score_box.setAttributeNS(null, "fill", "#FF0000");
@@ -66,7 +65,6 @@ function isInBounds(x, velocity) {
 }
 
 function didCollide(rects) {
-	//checks rects against the sprite's y coordinate (75)
 	for (var i = 0; i < rects.length; i++) {
 		if (rects[i][1] <= 75 && (rects[i][1] + rects[i][2]) >= 75) {
 			return true;
@@ -97,17 +95,14 @@ function moveSprite(velocity, gravity, x, left_side, rects) {
 	if (x < 50) {
 		//sprite is on left side
 		if (left_side !== true) {
-			//apply score if not yet applied
 			left_side = true;
 			setScore(rects);
 		}
-		//keep in bounds
 		if (!isInBounds(x, velocity)) {
 			velocity = Math.abs(velocity) + gravity;
 		}else {
 			velocity += gravity;
 		}
-		//if jump on left side
 		if (velocity > 0 && jump) {
 			//if going towards center, move sprite towards bounds
 			velocity -= jump_x;
@@ -120,17 +115,14 @@ function moveSprite(velocity, gravity, x, left_side, rects) {
 	} else {
 		//sprite on right side
 		if (left_side !== false) {
-			//apply score if not yet applied
 			left_side = false;
 			setScore(rects);
 		}
-		//keep in bounds
 		if (!isInBounds(x, velocity)) {
 			velocity = -(velocity) - gravity;
 		} else {
 			velocity -= gravity; 
 		}
-		//if jump on right side
 		if (jump && velocity < 0) {
 			//if going towards center, move in opposite direction
 			velocity += jump_x;
