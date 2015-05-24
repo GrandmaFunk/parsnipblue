@@ -44,16 +44,13 @@ function makeRect(y, h) {
 function moveRects(rects) {
 	for (var i = 0; i < rects.length; i++) {
 		if (rects[i][1] > 100){
-			var h = getRandom(5, 20);
-			rects[i][0].setAttributeNS(null, "height", h + "%");
-			rects[i][2] = h;
-
-			var y = getRandom(20, 70);
-			rects[i][0].setAttributeNS(null, "y", 0 - y + "%");
-			rects[i][1] = 0- y;
+			rects[i][2] = getRandom(5, 20);
+			rects[i][0].setAttributeNS(null, "height", rects[i][2] + "%");
+			rects[i][1] = 0 - getRandom(20, 70);
+			rects[i][0].setAttributeNS(null, "y", rects[i][1] + "%");
 		} else {
-			rects[i][0].setAttributeNS(null, "y", rects[i][1] + 1 + "%");
 			rects[i][1] += 1;
+			rects[i][0].setAttributeNS(null, "y", rects[i][1] + "%");
 		}
 	}
 	return rects;
@@ -70,9 +67,7 @@ function isInBounds(x, velocity) {
 function didCollide(rects) {
 	//checks rects against the sprite's y coordinate (75)
 	for (var i = 0; i < rects.length; i++) {
-		var y = rects[i][1];
-		var h = y + rects[i][2];
-		if (y <= 75 && h >= 75) {
+		if (rects[i][1] <= 75 && (rects[i][1] + rects[i][2]) >= 75) {
 			return true;
 		}
 	}
@@ -80,6 +75,7 @@ function didCollide(rects) {
 }
 
 function setHighscore(score) {
+	highscore = score;
 	var highscore_box = svg.getElementById("highscore");
 	highscore_box.textContent = "Highscore: " + score;
 }
@@ -91,7 +87,6 @@ function setScore(rects) {
 		score_box.textContent = score;
 		if (score > highscore) {
 			setHighscore(score);
-			highscore = score;
 		}
 	} else {
 		resetScore();
