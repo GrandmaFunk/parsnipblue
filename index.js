@@ -2,6 +2,7 @@ function start() {
 	//load elements
 	svg = document.getElementsByTagName("svg")[0];
 	sprite = svg.getElementById("sprite");
+	score_box = svg.getElementById("score");
 	highscore = 0;
 	jump = false;
 	jump_x = 2;
@@ -82,7 +83,6 @@ function setHighscore(score) {
 
 function setScore(rects) {
 	if (!didCollide(rects)) {
-		var score_box = svg.getElementById("score");
 		var score = parseInt(score_box.textContent) + 1;
 		score_box.textContent = score;
 		if (score > highscore) {
