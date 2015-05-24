@@ -119,7 +119,7 @@ function move_sprite(velocity, gravity, x, left_side, rects) {
 			jump = false;
 		}else if (jump) {
 			//if going towards bounds, move sprite towards center
-			velocity += jump_x;
+			velocity = -jump_x/2;
 			jump = false;
 		}
 	} else {
@@ -142,7 +142,7 @@ function move_sprite(velocity, gravity, x, left_side, rects) {
 			jump = false;
 		} else if (jump) {
 			//if going towards bounds, move in opposite direction
-			velocity -= jump_x;
+			velocity = jump_x/2;
 			jump = false;
 		}
 	}
