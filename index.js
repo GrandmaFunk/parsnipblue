@@ -11,8 +11,8 @@ function start() {
 	var r3 = makeRect(-60,10);
 	var r4 = makeRect(-95, 5);
 	var r5 = makeRect(-150, 40);
-	moveSprite(2, 0.1, x, false, [r1, r2, r3, r4, r5]);
-			//velocity, gravity, x, side, rects
+	moveSprite(2, 0.1, x, false, [[r1, -15, 5], [r2, -30, 5], [r3, -60, 10], [r4, -95, 5], [r5, -150, 40]]);
+			//velocity, gravity, x, left_side, [rect, y, h]
 }
 
 function resetScore() {
@@ -43,12 +43,17 @@ function makeRect(y, h) {
 
 function moveRects(rects) {
 	for (var i = 0; i < rects.length; i++) {
-		var cur_y =  parseInt(rects[i].getAttributeNS(null, "y").slice(0, -1));
-		if (cur_y > 100){
-			rects[i].setAttributeNS(null, "height", getRandom(5, 20) + "%");
-			rects[i].setAttributeNS(null, "y", 0 - getRandom(20, 70) + "%");
+		if (rects[i][1] > 100){
+			var h = getRandom(5, 20);
+			rects[i][0].setAttributeNS(null, "height", h + "%");
+			rects[i][2] = h;
+
+			var y = getRandom(20, 70);
+			rects[i][0].setAttributeNS(null, "y", 0 - y + "%");
+			rects[i][1] = 0- y;
 		} else {
-			rects[i].setAttributeNS(null, "y", cur_y + 1 + "%");
+			rects[i][0].setAttributeNS(null, "y", rects[i][1] + 1 + "%");
+			rects[i][1] += 1;
 		}
 	}
 	return rects;
@@ -65,9 +70,9 @@ function isInBounds(x, velocity) {
 function didCollide(rects) {
 	//checks rects against the sprite's y coordinate (75)
 	for (var i = 0; i < rects.length; i++) {
-		var ry = parseInt(rects[i].getAttributeNS(null, "y").slice(0, -1));
-		var rh = ry + parseInt(rects[i].getAttributeNS(null, "height").slice(0, -1));
-		if (ry <= 75 && rh >= 75) {
+		var y = rects[i][1];
+		var h = y + rects[i][2];
+		if (y <= 75 && h >= 75) {
 			return true;
 		}
 	}
