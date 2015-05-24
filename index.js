@@ -45,10 +45,8 @@ function moveRects(rects) {
 	for (var i = 0; i < rects.length; i++) {
 		var cur_y =  parseInt(rects[i].getAttributeNS(null, "y").slice(0, -1));
 		if (cur_y > 100){
-			//give the rectangle that moved off the board a random height and y value above the screen
-			var new_height = getRandom(5, 15);
-			rects[i].setAttributeNS(null, "height", new_height + "%");
-			rects[i].setAttributeNS(null, "y", 0 - getRandom(0, 100) - new_height + "%");
+			rects[i].setAttributeNS(null, "height", getRandom(5, 20) + "%");
+			rects[i].setAttributeNS(null, "y", 0 - getRandom(20, 70) + "%");
 		} else {
 			rects[i].setAttributeNS(null, "y", cur_y + 1 + "%");
 		}
@@ -57,7 +55,6 @@ function moveRects(rects) {
 }
 
 function isInBounds(x, velocity) {
-	//return true if sprite is in bounds
 	if (0 < x + velocity && x + velocity < 100) {
 		return true;
 	} else {
@@ -67,7 +64,6 @@ function isInBounds(x, velocity) {
 
 function didCollide(rects) {
 	//checks rects against the sprite's y coordinate (75)
-	//returns true if sprite and rects collided
 	for (var i = 0; i < rects.length; i++) {
 		var ry = parseInt(rects[i].getAttributeNS(null, "y").slice(0, -1));
 		var rh = ry + parseInt(rects[i].getAttributeNS(null, "height").slice(0, -1));
@@ -84,7 +80,6 @@ function setHighscore(score) {
 }
 
 function setScore(rects) {
-	//if no collision, score + 1
 	if (!didCollide(rects)) {
 		var score_box = svg.getElementById("score");
 		var score = parseInt(score_box.textContent) + 1;
@@ -99,7 +94,6 @@ function setScore(rects) {
 }
 
 function moveSprite(velocity, gravity, x, left_side, rects) {
-	//moves sprite, requestAnimationFrame calls this function repetedly
 	if (x < 50) {
 		//sprite is on left side
 		if (left_side !== true) {
@@ -148,7 +142,6 @@ function moveSprite(velocity, gravity, x, left_side, rects) {
 		}
 	}
 	
-	//set new position
 	sprite.setAttribute("cx", (x + velocity) + "%");
 	
 	window.requestAnimationFrame( function() {
@@ -158,10 +151,10 @@ function moveSprite(velocity, gravity, x, left_side, rects) {
 
 function entry() {
 	jump = true;
+	return false;
 }
 
 document.onkeyup = function(e) {
-	//jump on spacebar
 	if (e.keyCode == 32) {
 		entry();
 	}
