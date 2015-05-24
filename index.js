@@ -148,11 +148,10 @@ function move_sprite(velocity, gravity, x, left_side, rects) {
 	}
 	
 	//set new position
-	var new_x = x + velocity;	//sets x
-	sprite.setAttribute("cx", new_x + "%");
+	sprite.setAttribute("cx", (x + velocity) + "%");
 	
 	window.requestAnimationFrame( function() {
-		move_sprite(velocity, gravity, new_x, left_side, rects);
+		move_sprite(velocity, gravity, (x + velocity), left_side, rects);
 		move_rects(rects);
 	});
 }
