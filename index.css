@@ -37,17 +37,17 @@ svg {
 
 #title {
 	position: fixed;
-	-webkit-transform: rotate(-90deg);
-	-webkit-transform-origin: 100% 100%;
-	-moz-transform: rotate(-90deg);
-	-moz-transform-origin: 100% 100%;
-	-ms-transform: rotate(-90deg);
-	-ms-transform-origin: 100% 100%;
-	-o-transform: rotate(-90deg);
-	-o-transform-origin: 100% 100%;
-	transform: rotate(-90deg);
-	transform-origin: 100% 100%;
-	right: 0;
+	-webkit-transform: rotate(-270deg);
+	-webkit-transform-origin: 0% 100%;
+	-moz-transform: rotate(-270deg);
+	-moz-transform-origin: 0% 100%;
+	-ms-transform: rotate(-270deg);
+	-ms-transform-origin: 0% 100%;
+	-o-transform: rotate(-270deg);
+	-o-transform-origin: 0% 100%;
+	transform: rotate(-270deg);
+	transform-origin: 0% 100%;
+	left: 0%;
 	top: 0%;
 	font-family: "Lato", sans-serif;
 	font-size: 10vh;
