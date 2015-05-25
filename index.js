@@ -13,14 +13,6 @@ function start() {
 			//velocity, gravity, x, left_side, [rect, y, h]
 }
 
-function resetScore() {
-	score_box.textContent = 0;
-	score_box.style.opacity = 0.7;  
-	window.setTimeout(function() {
-		score_box.style.opacity = 0.3;
-	}, 500);
-}
-
 function getRandom(min, max) {
 	return Math.floor(Math.random() * (max + min + 1) + min);
 }
@@ -75,7 +67,7 @@ function setScore(rects) {
 			setHighscore(score);
 		}
 	} else {
-		resetScore();
+		score_box.textContent = 0;
 	}
 }
 
