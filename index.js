@@ -1,7 +1,6 @@
 function start() {
-	svg = document.getElementsByTagName("svg")[0];
-	sprite = svg.getElementById("sprite");
-	score_box = svg.getElementById("score");
+	sprite = document.getElementById("sprite");
+	score_box = document.getElementById("score");
 	highscore = 0;
 	jump = false;
 	jump_x = 2;
@@ -29,6 +28,7 @@ function getRandom(min, max) {
 
 function makeRect(y, h) {
 	var rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+	svg = document.getElementsByTagName("svg")[0];
 	rect.setAttributeNS(null, "x", "49%");
 	rect.setAttributeNS(null, "y", y + "%");
 	rect.setAttributeNS(null, "width", "2%");
@@ -63,7 +63,7 @@ function didCollide(rects) {
 }
 
 function setHighscore(score) {
-	var highscore_box = svg.getElementById("highscore");
+	var highscore_box = document.getElementById("highscore");
 	highscore_box.textContent = "Highscore: " + score;
 	highscore = score;
 }
