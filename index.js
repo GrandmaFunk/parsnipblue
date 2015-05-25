@@ -3,7 +3,6 @@ function start() {
 	score_box = document.getElementById("score");
 	highscore = 0;
 	jump = false;
-	jump_x = 2;
 	var x = parseInt(sprite.getAttribute("cx").slice(0,-1));
 	var r1 = makeRect(-15, 5);
 	var r2 = makeRect(-30, 5);
@@ -95,10 +94,10 @@ function moveSprite(velocity, gravity, x, left_side, rects) {
 		if (jump) {
 			if (velocity > 0) {
 				//if going towards center, move sprite towards bounds
-				velocity -= jump_x;
+				velocity -= 2;
 			} else {
 				//if going towards bounds, move sprite towards center
-				velocity = -jump_x/2;
+				velocity = -1;
 			}
 		jump = false;
 		}
@@ -116,10 +115,10 @@ function moveSprite(velocity, gravity, x, left_side, rects) {
 		if (jump) {
 			if (velocity < 0) {
 				//if going towards center, move in opposite direction
-				velocity += jump_x;
+				velocity += 2;
 			} else {
 				//if going towards bounds, move in opposite direction
-				velocity = jump_x/2;
+				velocity = 1;
 			}
 		jump = false;
 		}
