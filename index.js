@@ -18,10 +18,8 @@ function start() {
 function resetScore() {
 	score_box.textContent = 0;
 	score_box.style.opacity = 0.7;  
-	score_box.setAttributeNS(null, "fill", "#FF0000");
 	window.setTimeout(function() {
 		score_box.style.opacity = 0.3;
-		score_box.setAttributeNS(null, "fill", "#FFFFFF");
 	}, 500);
 }
 
@@ -65,9 +63,9 @@ function didCollide(rects) {
 }
 
 function setHighscore(score) {
-	highscore = score;
 	var highscore_box = svg.getElementById("highscore");
 	highscore_box.textContent = "Highscore: " + score;
+	highscore = score;
 }
 
 function setScore(rects) {
