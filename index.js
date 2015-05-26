@@ -9,8 +9,8 @@ function start() {
 	var r3 = makeRect(-60,10);
 	var r4 = makeRect(-95, 5);
 	var r5 = makeRect(-150, 40);
-	moveSprite(2, 0.1, x, false, [[r1, -15, 5], [r2, -30, 5], [r3, -60, 10], [r4, -95, 5], [r5, -150, 40]]);
-			//velocity, gravity, x, left_side, [rect, y, h]
+	moveSprite(2, 0.1, x, false, [[r1, -15, 5], [r2, -30, 5], [r3, -60, 10], [r4, -95, 5], [r5, -150, 40]], 0);
+			//velocity, gravity, x, left_side, [rect, y, h], score
 }
 
 function getRandom(min, max) {
@@ -59,24 +59,25 @@ function setHighscore(score) {
 	highscore = score;
 }
 
-function setScore(rects) {
+function setScore(rects, score) {
 	if (!didCollide(rects)) {
-		var score = parseInt(score_box.textContent) + 1;
-		score_box.textContent = score;
+		score += 1;
 		if (score > highscore) {
 			setHighscore(score);
 		}
 	} else {
-		score_box.textContent = 0;
+		score = 0;
 	}
+	score_box.textContent = score;
+	return score;
 }
 
-function moveSprite(velocity, gravity, x, left_side, rects) {
+function moveSprite(velocity, gravity, x, left_side, rects, score) {
 	if (x < 50) {
 		//sprite is on left side
 		if (left_side !== true) {
 			left_side = true;
-			setScore(rects);
+			score = setScore(rects, score);
 		}
 		if (x + velocity < 0) {
 			velocity = Math.abs(velocity) + gravity;
@@ -97,7 +98,7 @@ function moveSprite(velocity, gravity, x, left_side, rects) {
 		//sprite on right side
 		if (left_side !== false) {
 			left_side = false;
-			setScore(rects);
+			score = setScore(rects, score);
 		}
 		if (x + velocity > 100) {
 			velocity = -(velocity) - gravity;
@@ -119,7 +120,7 @@ function moveSprite(velocity, gravity, x, left_side, rects) {
 	sprite.setAttribute("cx", (x + velocity) + "%");
 	
 	window.requestAnimationFrame( function() {
-		moveSprite(velocity, gravity, (x + velocity), left_side, moveRects(rects));
+		moveSprite(velocity, gravity, (x + velocity), left_side, moveRects(rects), score);
 	});
 }
 
