@@ -54,8 +54,7 @@ function didCollide(rects) {
 }
 
 function setHighscore(score) {
-	var highscore_box = document.getElementById("highscore");
-	highscore_box.textContent = "Highscore: " + score;
+	document.getElementById("highscore").textContent = "Highscore: " + score;
 	highscore = score;
 }
 
