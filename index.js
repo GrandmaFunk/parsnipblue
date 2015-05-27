@@ -3,13 +3,12 @@ function start() {
 	score_box = document.getElementById("score");
 	highscore = 0;
 	jump = false;
-	var x = parseInt(sprite.getAttribute("cx").slice(0,-1));
 	var r1 = makeRect(-15, 5);
 	var r2 = makeRect(-30, 5);
 	var r3 = makeRect(-60,10);
 	var r4 = makeRect(-95, 5);
 	var r5 = makeRect(-150, 40);
-	moveSprite(2, -0.1, x, false, [[r1, -15, 5], [r2, -30, 5], [r3, -60, 10], [r4, -95, 5], [r5, -150, 40]], 0);
+	moveSprite(2, -0.1, 50, false, [[r1, -15, 5], [r2, -30, 5], [r3, -60, 10], [r4, -95, 5], [r5, -150, 40]], 0);
 			//velocity, gravity, x, left_side, [rect, y, h], score
 }
 
