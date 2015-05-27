@@ -52,18 +52,14 @@ function didCollide(rects) {
 	return false;
 }
 
-function setHighscore(score) {
-	document.getElementById("highscore").textContent = "Highscore: " + score;
-	highscore = score;
-}
-
 function setScore(rects, score) {
 	if (didCollide(rects)) {
 		score = 0;
 	} else {
 		score += 1;
 		if (score > highscore) {
-			setHighscore(score);
+			document.getElementById("highscore").textContent = "Highscore: " + score;
+			highscore = score;
 		}
 	}
 	score_box.textContent = score;
@@ -97,9 +93,9 @@ function moveSprite(velocity, gravity, x, left_side, rects, score) {
 		} else if (velocity < 0 && gravity < 0) {
 			velocity += 2;
 		} else {
-			velocity = (-gravity * 10);
+			velocity = -gravity * 10;
 		}
-	jump = false;
+		jump = false;
 	}
 	
 	sprite.setAttribute("cx", (x + velocity) + "%");
