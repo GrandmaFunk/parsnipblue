@@ -73,15 +73,13 @@ function setScore(rects, score) {
 
 function moveSprite(velocity, gravity, x, left_side, rects, score) {
 	if (x < 50) {
-		//sprite is on left side
-		if (left_side !== true) {
+		if (left_side === false) {
 			left_side = true;
 			gravity = Math.abs(gravity);
 			score = setScore(rects, score);
 		}
 	} else {
-		//sprite on right side
-		if (left_side !== false) {
+		if (left_side === true) {
 			left_side = false;
 			gravity = -gravity;
 			score = setScore(rects, score);
@@ -93,19 +91,19 @@ function moveSprite(velocity, gravity, x, left_side, rects, score) {
 	} else {
 		velocity += gravity;
 	}
+
 	if (jump) {
 		if (velocity > 0 && gravity > 0) {
 			velocity -= 2;
 		} else if (velocity < 0 && gravity < 0) {
 			velocity += 2;
 		} else {
-		velocity = (-gravity * 10);
+			velocity = (-gravity * 10);
 		}
 	jump = false;
 	}
 	
 	sprite.setAttribute("cx", (x + velocity) + "%");
-	
 	window.requestAnimationFrame( function() {
 		moveSprite(velocity, gravity, (x + velocity), left_side, moveRects(rects), score);
 	});
