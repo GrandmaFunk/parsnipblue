@@ -79,16 +79,6 @@ function moveSprite(velocity, gravity, x, left_side, rects, score) {
 			gravity = Math.abs(gravity);
 			score = setScore(rects, score);
 		}
-		if (jump) {
-			if (velocity > 0) {
-				//if going towards center, move sprite towards bounds
-				velocity -= 2;
-			} else {
-				//if going towards bounds, move sprite towards center
-				velocity = -1;
-			}
-		jump = false;
-		}
 	} else {
 		//sprite on right side
 		if (left_side !== false) {
@@ -96,22 +86,22 @@ function moveSprite(velocity, gravity, x, left_side, rects, score) {
 			gravity = -gravity;
 			score = setScore(rects, score);
 		}
-		if (jump) {
-			if (velocity < 0) {
-				//if going towards center, move in opposite direction
-				velocity += 2;
-			} else {
-				//if going towards bounds, move in opposite direction
-				velocity = 1;
-			}
-		jump = false;
-		}
 	}
 
 	if (0 > x + velocity || x + velocity > 100) { 
 		velocity = -velocity + gravity;
 	} else {
 		velocity += gravity;
+	}
+	if (jump) {
+		if (velocity > 0 && gravity > 0) {
+			velocity -= 2;
+		} else if (velocity < 0 && gravity < 0) {
+			velocity += 2;
+		} else {
+		velocity = (-gravity * 10);
+		}
+	jump = false;
 	}
 	
 	sprite.setAttribute("cx", (x + velocity) + "%");
