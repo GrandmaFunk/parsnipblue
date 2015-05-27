@@ -31,10 +31,10 @@ function makeRect(y, h) {
 function moveRects(rects) {
 	for (var i = 0; i < rects.length; i++) {
 		if (rects[i][1] > 100){
-			rects[i][2] = getRandom(5, 20);
-			rects[i][0].setAttributeNS(null, "height", rects[i][2] + "%");
 			rects[i][1] = 0 - getRandom(20, 70);
 			rects[i][0].setAttributeNS(null, "y", rects[i][1] + "%");
+			rects[i][2] = getRandom(5, 20);
+			rects[i][0].setAttributeNS(null, "height", rects[i][2] + "%");
 		} else {
 			rects[i][1] += 1;
 			rects[i][0].setAttributeNS(null, "y", rects[i][1] + "%");
@@ -58,13 +58,13 @@ function setHighscore(score) {
 }
 
 function setScore(rects, score) {
-	if (!didCollide(rects)) {
+	if (didCollide(rects)) {
+		score = 0;
+	} else {
 		score += 1;
 		if (score > highscore) {
 			setHighscore(score);
 		}
-	} else {
-		score = 0;
 	}
 	score_box.textContent = score;
 	return score;
