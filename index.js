@@ -78,6 +78,8 @@ function moveSprite(velocity, gravity, x, left_side, rects, score) {
 
 	if (0 > x + velocity || x + velocity > 100) { 
 		velocity = -velocity + gravity;
+		score = 0;
+		score_box.textContent = score;
 	} else {
 		velocity += gravity;
 	}
