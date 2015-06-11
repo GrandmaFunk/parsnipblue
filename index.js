@@ -77,7 +77,7 @@ function moveSprite(velocity, gravity, x, left_side, rects, score) {
 	}
 
 	if (0 > x + velocity || x + velocity > 100) { 
-		velocity = -velocity + gravity;
+		velocity = -velocity;
 		score = 0;
 		score_box.textContent = score;
 	} else {
@@ -90,7 +90,7 @@ function moveSprite(velocity, gravity, x, left_side, rects, score) {
 		} else if (velocity < 0 && gravity < 0) {
 			velocity += 2;
 		} else {
-			velocity = -gravity * 10;
+			velocity = -gravity * 20;
 		}
 		jump = false;
 	}
