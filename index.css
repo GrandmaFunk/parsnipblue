@@ -21,8 +21,6 @@ svg {
 #score {
 	font-size: 55vh;
 	opacity: 0.3;
-	-webkit-transition: opacity 0.5s;
-	transition: opacity 0.5s;
 }
 
 #highscore {
