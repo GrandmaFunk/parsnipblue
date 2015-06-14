@@ -5,4 +5,6 @@ The goal is to be responsive and mobile friendly.
 Swing back and forth avoiding the falling rectangles.
 Click or press the spacebar to give a nudge in the opposite direction.
 
+!(demo gameplay)[gameplaydemo.gif]
+
 parsnipblue is licensed under the  [MIT License](https://github.com/GrandmaFunk/parsnipblue/blob/gh-pages/LICENSE)
