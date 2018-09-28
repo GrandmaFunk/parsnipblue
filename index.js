@@ -1,5 +1,5 @@
 /*
- I made several changes here, 
+ I made several changes here, all of which were for style, the function of the game remains identical, 
  	first I eliminated the left_side varriable and replaced it with an on the fly calculation,
 	second, I removed the or statements for detecting when the ball hits the edges in favor of a single deviation from center value,
 	third, I replaced the duplicate If statements for modifying the velocity with a single statement that calculates how to modify the velocity on the fly
