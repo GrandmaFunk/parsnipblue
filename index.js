@@ -107,6 +107,6 @@ function entry() {
 
 document.onkeyup = function(e) {
 	if (e.keyCode == 32) {
-		entry()
+		entry();
 	}
 }
