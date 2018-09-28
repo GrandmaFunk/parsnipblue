@@ -3,8 +3,8 @@ function start() {
 	score_box = document.getElementById("score");
 	highscore = 0;
 	jump = false;
-	moveSprite(2, -0.1, 50, false, [makeRect(-15, 5), makeRect(-30, 5), makeRect(-60, 10), makeRect(-95, 5), makeRect(-150, 40)], 0);
-			//velocity, gravity, x, left_side, [[rect, y, h]], score
+	moveSprite(2, -0.1, 50, [makeRect(-15, 5), makeRect(-30, 5), makeRect(-60, 10), makeRect(-95, 5), makeRect(-150, 40)], 0);
+			//velocity, gravity, x, [[rect, y, h]], score
 }
 
 function getRandom(min, max) {
@@ -61,22 +61,16 @@ function setScore(rects, score) {
 	return score;
 }
 
-function moveSprite(velocity, gravity, x, left_side, rects, score) {
-	if (x < 50) {
-		if (left_side === false) {
-			left_side = true;
-			gravity = Math.abs(gravity);
-			score = setScore(rects, score);
-		}
-	} else {
-		if (left_side === true) {
-			left_side = false;
-			gravity = -gravity;
-			score = setScore(rects, score);
-		}
+function moveSprite(velocity, gravity, x, rects, score) {
+	// if the ball crosses from one side of the board to the other
+	if (gravity * (x-50) > 0){
+		gravity = -gravity;
+		score = setScore(rects, score);
+	
 	}
-
-	if (0 > x + velocity || x + velocity > 100) { 
+	
+	// if the ball reaches the edge of the game board
+	if (Math.abs(x + velocity - 50) > 50) { 
 		velocity = -velocity;
 		score = 0;
 		score_box.textContent = score;
@@ -85,10 +79,8 @@ function moveSprite(velocity, gravity, x, left_side, rects, score) {
 	}
 
 	if (jump) {
-		if (velocity > 0 && gravity > 0) {
-			velocity -= 2;
-		} else if (velocity < 0 && gravity < 0) {
-			velocity += 2;
+		if (velocity*gravity > 0) {
+			velocity -= 2 * (gravity/Math.abs(gravity));
 		} else {
 			velocity = -gravity * 20;
 		}
@@ -97,7 +89,7 @@ function moveSprite(velocity, gravity, x, left_side, rects, score) {
 	
 	sprite.setAttribute("cx", (x + velocity) + "%");
 	window.requestAnimationFrame( function() {
-		moveSprite(velocity, gravity, (x + velocity), left_side, moveRects(rects), score);
+		moveSprite(velocity, gravity, (x + velocity), moveRects(rects), score);
 	});
 }
 
@@ -108,6 +100,6 @@ function entry() {
 
 document.onkeyup = function(e) {
 	if (e.keyCode == 32) {
-		entry();
+		entry()
 	}
 }
